@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 # the component, and True when we're ready to package and distribute it.
 # (This is, of course, optional - there are innumerable ways to manage your
 # release process.)
-_RELEASE = False
+_RELEASE = True
 
 # Declare a Streamlit component. `declare_component` returns a function
 # that is used to create instances of the component. We're naming this
@@ -51,23 +51,27 @@ def st_globalrefresh(
     interval=1000,
     *,
     limit=None,
-    debounce=True,
     key=None,
 ):
-    """Create an autorefresh instance to trigger a refresh of the application
+    """Create an widget instance to trigger a refresh of the application
 
     Parameters
     ----------
     interval: int
-        Amount of time in milliseconds to
+        Amount of time in milliseconds to regularly refresh the app
+    action: str
+        choices - 'start_refresh' , 'set_lock'. start_refresh starts the refresh
+        loop (it is advised to be only used once). set_lock activates/deactivates
+        the a lock
+    lock_state: Boolean
+        To be passed along when using action = 'set_lock' to activate/deactivate
+        the lock
+    lock_expiration: int
+        Time in milliseconds till which an active lock will be valid. Defaults to 30000 ms
     limit: int or None
         Amount of refreshes to allow. If none, it will refresh infinitely.
         While infinite refreshes sounds nice, it will continue to utilize
         computing resources.
-    debounce: boolean
-        Whether to delay the autorefresh when user interaction occurs.
-        Defaults to True in order to avoid refreshes interfering with
-        interaction effects on scripts.
     key: str or None
         An optional key that uniquely identifies this component. If this is
         None, and the component's arguments are changed, the component will
@@ -85,7 +89,6 @@ def st_globalrefresh(
         lock_expiration=lock_expiration,
         interval=interval,
         limit=limit,
-        debounce=debounce,
         key=key,
     )
 

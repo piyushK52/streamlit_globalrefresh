@@ -8,7 +8,7 @@ setuptools.setup(
     description="Global refresh with locks for streamlit",
     long_description="Global refresh with locks for streamlit",
     long_description_content_type="text/plain",
-    url="https://github.com/kmcgrady/streamlit-globalrefresh",
+    url="https://github.com/piyushK52/streamlit_globalrefresh",
     packages=setuptools.find_packages(),
     include_package_data=True,
     classifiers=[],
